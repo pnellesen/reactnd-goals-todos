@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import List from './List'
 
@@ -12,8 +12,7 @@ class Todos extends React.Component {
     addItem = (evt) => {
         evt.preventDefault();
         const name = this.input.value;
-        this.input.value = '';
-        this.props.dispatch(handleAddToDo(name));
+        this.props.dispatch(handleAddToDo(name, () => this.input.value = ''));
     }
     removeItem = (todo) => {
         this.props.dispatch(handleDeleteTodo(todo));

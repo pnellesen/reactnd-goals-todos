@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import NewConnectedLoader from './Loader'
 import NewConnectedTodos from './Todos'
 import NewConnectedGoals from './Goals'
 
-import handleApiFetch from '../actions/shared'
+import {handleApiFetch} from '../actions/shared'
 
 class App extends React.Component {
   componentDidMount() {

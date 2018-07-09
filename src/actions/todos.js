@@ -6,21 +6,21 @@ export const DELETE_TODO = 'DELETE_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
 
 // set up functions for our various actions
-addToDo = (todo) => {
+const addToDo = (todo) => {
     return {
         type: ADD_TODO,
         todo
     }
 };
 
-deleteToDo = (todo) => {
+const deleteToDo = (todo) => {
     return {
         type: DELETE_TODO,
         todo
     }
 };
 
-toggleToDo = (todo) => {
+const toggleToDo = (todo) => {
     return {
         type: TOGGLE_TODO,
         todo
@@ -33,15 +33,26 @@ export function handleDeleteTodo(todo) {
       dispatch(deleteToDo(todo));// dispatch our App delete action here
       return   API.deleteTodo(todo.id).catch(() => {// this will do the asynchronous API delete action.
           alert('Problem deleting todo - please try again in a moment');
-          //dispatch(addToDo(todo));
-          dispatch(handleAddToDo(todo.name));
+          dispatch(addToDo(todo));
       })
     }
 }
 
 // Combine app and API Add todo code
-export function handleAddToDo(name) {
-    const newId = appStore.generateId();
+export function handleAddToDo(name, cb) {
+    return (dispatch) => {
+        return API.saveTodo(name).then((todo) => {
+            dispatch(addToDo(todo))
+            cb()
+            console.log("handleAddTodo. cb: ", cb());
+        }).catch(() => {
+            alert("Error saving todo " + name + " please try again")
+        })
+    }
+
+
+
+    /*
     return (dispatch) => {
         const addResult = dispatch(addToDo({
             id: newId,
@@ -53,6 +64,7 @@ export function handleAddToDo(name) {
           dispatch(handleDeleteTodo(addResult.todo));
       })
     }
+    */
 
 }
 

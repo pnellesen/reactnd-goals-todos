@@ -1,7 +1,7 @@
 import API from 'goals-todos-api'
 export const FETCH_DATA = 'FETCH_DATA'
 
-fetchData = (todos, goals, loaderClass) => {
+const fetchData = (todos, goals, loaderClass) => {
     return {
         type: FETCH_DATA,
         todos,

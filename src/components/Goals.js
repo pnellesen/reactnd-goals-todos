@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import List from './List'
 
@@ -13,8 +13,7 @@ class Goals extends React.Component {
     addItem = (evt) => {
         evt.preventDefault();
         const name = this.input.value;
-        this.input.value = '';
-        this.props.dispatch(handleAddGoal(name));
+        this.props.dispatch(handleAddGoal(name, () => this.input.value=''));
     }
     removeItem = (goal) => {
         this.props.dispatch(handleDeleteGoal(goal));

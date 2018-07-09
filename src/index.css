@@ -3,3 +3,10 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+
+ol li.todoItem:hover, ul li span.todoItem:hover {cursor:pointer}
+ol li.completed, ul li span.completed {text-decoration: line-through}
+.loader {display: block}
+.hidden {display: none}
+
